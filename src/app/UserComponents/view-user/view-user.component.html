@@ -1,0 +1,68 @@
+<div id="duserFind" class="container-fluid bg-dark">
+
+
+  <form #FormVariable ='ngForm' (ngSubmit)="getUserById()">
+    <table class="container-fluid">
+        <thead>
+            <tr>
+                <th>
+                 <div >
+                    <label ><p class="text-light">FindUser</p></label>
+                 </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="uId"  minlength="2"required
+                        maxlength="8"placeholder="Please Enter the UserId" [(ngModel)]="userId" #FuserId="ngModel" name=userId pattern="^[0-9]{8}$">
+    
+    
+                         <div *ngIf ="FuserId.invalid &&(FuserId.dirty ||FuserId.touched)"class="alert alert-danger">
+                            <div *ngIf="FuserId.errors.required">UserId is required. </div>
+                            <div *ngIf="FuserId.errors.minlength">UserId must be at least 3 digits.</div>
+                         </div>
+    
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group"><button class="btn btn-success" type="submit" id="fUser"   [disabled]="!FormVariable.valid"> <b>GetUser!</b></button></div>
+                </th>
+            </tr>
+        </thead>
+    </table>
+   </form>
+
+
+   <div>
+       <table  class="table table-striped table-dark">
+           <thead>
+            <tr>
+                <th>
+                   <label> S.no</label>
+                </th>
+                <th>
+                   <label> USERID</label>
+                </th>
+                <th>
+                 <label> USERNAME</label>
+              </th>
+              <th>
+                <label> ROLE</label>
+             </th>
+            </tr>
+           </thead>
+           <tbody>
+            <tr *ngFor="let u of user let i = index">
+                <th>{{i+1}}</th>
+                <th>{{u.userId}} </th>
+                <th>{{u.userName}} </th>
+                <th>{{u.role}}</th>
+            </tr>
+           </tbody>
+       </table>
+   </div>
+   
+</div>
+
+<div align=center>
+    <h3>{{errorInfo}}</h3>
+</div>

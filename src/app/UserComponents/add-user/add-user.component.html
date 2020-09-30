@@ -1,0 +1,62 @@
+<div  class="container-fluid bg-dark">
+    <div class="row">
+        <div class="col-sm">
+    
+        </div>
+        <div class="col-sm">
+            <div class="card" style="width: 29rem;">
+                <div class="card-header"><pre><h4><b>User Registration Process</b></h4></pre></div>
+                    <form #FormVariable ='ngForm' (ngSubmit)="addUser()">
+
+                        <div class="form-group">
+                          <label for="userIdLabel"><b>UserPhoneNumber</b></label>
+                          <input required minlength="1" maxlength="8"type="text" class="form-control" id="uId"  placeholder="Enter the Your number"
+                          name=userId [(ngModel)]="user.userId"  #userPhoneNumber="ngModel" pattern="^[0-9]{8}$" >
+                       
+                                <div *ngIf ="userPhoneNumber.invalid &&(userPhoneNumber.dirty ||userPhoneNumber.touched)"class="alert alert-danger">
+                                   <div *ngIf="userPhoneNumber.errors.required">UserId is required. </div>
+                                   <div *ngIf="userPhoneNumber.errors.minlength">UserPhoneNumber must be at least 1 digit long.</div>
+                                </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="userNameLabel"><b>UserName</b></label>
+                          <input required type="text" minlength="3" maxlength="20"class="form-control" id="uname" placeholder="Enter the UserName"
+                           name=userName [(ngModel)]="user.userName" #userName="ngModel" pattern="[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}">
+
+                           <div *ngIf ="userName.invalid &&(userName.dirty ||userName.touched)"class="alert alert-danger">
+                            <div *ngIf="userName.errors.required">UserName is required. </div>
+                            <div *ngIf="userName.errors.minlength">UserName must be at least 3 characters long.</div>
+                         </div>
+
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="userPasswordLabel"><b>UserPassword</b></label>
+                            <input required type="password" minlength="2" maxlength="8"class="form-control" id="upass" placeholder="Enter the Password"
+                             name=password [(ngModel)]="user.password" #UserPassword="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+
+                             <div *ngIf ="UserPassword.invalid &&(UserPassword.dirty ||UserPassword.touched)"class="alert alert-danger">
+                                <div *ngIf="UserPassword.errors.required">Password Must contain characters and Numbers </div>
+                                <div *ngIf="UserPassword.errors.minlength">Password must be at least 6 characters long.</div>
+                             </div>
+                        </div>
+
+                        <div>
+                           <pre>              <button type="submit" id="d"class="btn btn-primary" [disabled]="!FormVariable.valid">Register</button>
+                           </pre>
+                        </div>
+
+                    </form>
+                
+            </div>
+        </div>
+        <div class="col-sm">
+            
+        </div>
+    </div>
+</div>
+<div align=center>
+    <h3>{{errorInfo}}</h3>
+</div>

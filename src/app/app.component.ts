@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'OnlineTestManagement';
+  image:string = 'assets/LOgo.jpg';
 }

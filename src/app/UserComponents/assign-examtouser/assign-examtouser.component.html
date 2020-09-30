@@ -1,0 +1,52 @@
+<div class="container-fluid bg-dark">
+    <div class="row">
+        <div class="col-sm">
+    
+        </div>
+        <div class="col-sm">
+            <div class="card" style="width: 50rem;">
+                <div class="card-header"><pre><h4><b> <div align="center">Assign Exam To User</div></b></h4></pre></div>
+                    <form #FormVariable ='ngForm' (ngSubmit)="assignExamToUser()">
+
+                        <div class="form-group">
+                          <label for="userIdLabel"><b>UserId</b></label>
+                          <input required type="text" class="form-control" id="userId"  placeholder="Enter the UserId" minlength="2" maxlength="8"
+                          name=userId [(ngModel)]="userId"  #userNumber="ngModel" pattern="^[0-9]{8}$" >
+
+                          <div *ngIf ="userNumber.invalid &&(userNumber.dirty ||userNumber.touched)"class="alert alert-danger">
+                            <div *ngIf="userNumber.errors.required">UserId is required. </div>
+                            <div *ngIf="userNumber.errors.minlength">UserPhoneNumber must be at least 1 digit long.</div>
+                         </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="examIdLabel"><b>ExamId</b></label>
+                          <input required type="text" class="form-control" id="examId" placeholder="Enter the ExamId" minlength="4" maxlength="4"
+                           name=examId [(ngModel)]="examId" #ExamId="ngModel" pattern="^[0-9]{4}$">
+
+                           <div *ngIf ="ExamId.invalid &&(ExamId.dirty ||ExamId.touched)"class="alert alert-danger">
+                            <div *ngIf="ExamId.errors.required">ExamId is required </div>
+                            <div *ngIf="ExamId.errors.minlength">ExamId must be 4 digits.</div>
+                         </div>
+                        </div>
+
+                        <div>
+                           <pre>              <button type="submit" class="btn btn-primary" id="b" [disabled]="!FormVariable.valid" >Assign</button>
+                           </pre>
+                        </div>
+
+                    </form>
+                
+            </div>
+        </div>
+        <div class="col-sm">
+            
+        </div>
+    </div>
+</div>
+
+<div align="center">
+    <h2>
+        {{errorInfo}}
+    </h2>
+</div>

@@ -1,0 +1,65 @@
+<div class="container-fluid bg-dark">
+    <form #FormVariable ='ngForm' (ngSubmit)="getExamById()">
+        <table class="container-fluid">
+            <tr>
+                <th>
+                 <label class="text-light">FindExam</label>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required
+                         placeholder="Enter the examId" [(ngModel)]="examId" name=examId #VExamn="ngModel" minlength="4" maxlength="4">
+
+                         <div *ngIf ="VExamn.invalid &&(VExamn.dirty ||VExamn.touched)"class="alert alert-danger">
+                            <div *ngIf="VExamn.errors.required">ExamId is required </div>
+                            <div *ngIf="VExamn.errors.minlength">ExamId must be 4 digits.</div>
+                         </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group"><button class="btn btn-success" type="submit" [disabled]="!FormVariable.valid"> <b>FindExam!</b></button></div>
+                </th>
+                <th>
+                    <div class="form-group"><button class="btn btn-success" type="submit" (click)=viewAllExams()> <b>GetExams!</b></button></div>
+                </th>
+            </tr>
+        </table>
+       </form>
+    
+    <div class="container-fluid"> 
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th>
+                        s.No
+                    </th>
+                    <th>
+                        examId
+                    </th>
+                    <th>
+                        examName
+                    </th>
+                    <th>
+                        examTimeInMins
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let e of exams let i=index">
+                    <th> {{i+1}}</th> 
+                    <th>{{e.examId}}</th>
+                    <th>{{e.examName}}</th>
+                    <th>{{e.minutes}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    
+    
+</div>
+
+<div align=center>
+    <h3>{{errorInfo}}</h3>
+</div>

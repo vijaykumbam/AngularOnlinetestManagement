@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+    
+        </div>
+        <div class="col-sm">
+            <div class="card" style="width: 29rem;">
+                <div class="card-header"><pre><h4><b>Add Exam Module</b></h4></pre></div>
+                    <form #FormVariable ='ngForm' (ngSubmit)="addExam()">
+
+                        <div class="form-group">
+                          <label for="ExamIdLabel"><b>ExamId</b></label>
+                          <input required type="number" minlength="2" maxlength="5" class="form-control" id="uId"  placeholder="Enter the ExamId"
+                          name=examId [(ngModel)]="exam.examId" #addExamMo="ngModel">
+
+                          <div *ngIf ="addExamMo.invalid &&(addExamMo.dirty ||addExamMo.touched)"class="alert alert-danger">
+                            <div *ngIf="addExamMo.errors.required">ExamId is required. </div>
+                            <div *ngIf="addExamMo.errors.minlength">ExamID must be 4 digit number.</div>
+                         </div>
+
+                        </div>
+
+                        <div class="form-group">
+                          <label for="ExamNameLabel"><b>ExamName</b></label>
+                          <input required type="text" minlength="2" maxlength="25" class="form-control" id="uname" placeholder="Enter the ExamName"
+                           name=examName [(ngModel)]="exam.examName" #addExamName="ngModel">
+
+                           <div *ngIf ="addExamName.invalid &&(addExamName.dirty ||addExamName.touched)"class="alert alert-danger">
+                            <div *ngIf="addExamName.errors.required">addExamName is required. </div>
+                            <div *ngIf="addExamName.errors.minlength">addExamName must be atleast 4 Characters.</div>
+                         </div>
+                        </div>
+                        
+
+                        <div>
+                           <pre>              <button type="submit" class="btn btn-success" id="aE" [disabled]="!FormVariable.valid">AddExam</button>
+                           </pre>
+                        </div>
+
+                    </form>
+                
+            </div>
+        </div>
+        <div class="col-sm">
+            
+        </div>
+    </div>
+</div>
+
+<div align=center>
+    <h3>
+        {{errorInfo}}
+    </h3>
+</div>
